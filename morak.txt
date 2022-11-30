@@ -1,0 +1,13 @@
+@main def programm() =
+  println("enter seed")
+  val seed = scala.io.StdIn.readInt()
+  var sum = 0.0
+  // part 1: LazyList.iterate(seed)(x => 75 * x % 65537).foreach(println) //задание для генератора чисел( закомментируйте, чтобы посмотреть задачку про моряка)
+  LazyList.iterate(seed)(x => 75 * x % 65537).take(10000).foreach({
+    x => val xi = x;
+    sum += ((65537.toDouble/2)-xi)/65537
+  })
+  println(sum)
+  //sum  = LazyList.iterate(((65537.toDouble/2)-seed.toDouble)/65537)(x => ((65537.toDouble/2)-(75 * (x*65537+65537.toDouble/2) % 65537))/65537).take(10).sum
+  //println(sum)
+
